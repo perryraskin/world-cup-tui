@@ -52,7 +52,7 @@ export function renderDetail(detail: MatchDetail, scroll: number, message: strin
   lines.push(frameLine(width));
   if (message) lines.push(pad(`${colors.yellow}${message}${colors.reset}`, width));
   for (let i = 0; i < bodyHeight; i += 1) {
-    lines.push(`${pad(stripOr(left[i] ?? ""), leftWidth)} ${colors.gray}│${colors.reset} ${stripOr(right[i] ?? "")}`);
+    lines.push(`${pad(left[i] ?? "", leftWidth)} ${colors.gray}│${colors.reset} ${truncateAnsi(right[i] ?? "", rightWidth)}`);
   }
   lines.push(`${colors.dim}j/k scroll • r refresh • o open ESPN • b/esc back • q quit${colors.reset}`);
   return fit(lines, height).join("\n");
@@ -129,17 +129,23 @@ function fit(lines: string[], height: number): string[] {
 }
 
 function pad(value: string, width: number): string {
-  return truncateAnsi(value, width).padEnd(width);
-}
-
-function stripOr(value: string): string {
-  return value;
+  const clipped = truncateAnsi(value, width);
+  return clipped + " ".repeat(Math.max(0, width - visibleLength(clipped)));
 }
 
 function truncateAnsi(value: string, width: number): string {
-  const plain = value.replace(/\x1b\[[0-9;]*m/g, "");
-  if (plain.length <= width) return value;
+  const cleaned = value.replace(/[\r\n\t]+/g, " ");
+  const plain = stripAnsi(cleaned);
+  if (plain.length <= width) return cleaned;
   return truncate(plain, width);
+}
+
+function visibleLength(value: string): number {
+  return stripAnsi(value).length;
+}
+
+function stripAnsi(value: string): string {
+  return value.replace(/\x1b\[[0-9;]*m/g, "");
 }
 
 function truncate(value: string, width: number): string {

@@ -110,13 +110,13 @@ function parseTimeline(json: any): TimelineEvent[] {
   return events
     .map((item: any, index: number) => {
       const play = item.play ?? item;
-      const type = String(play.type?.text ?? item.type ?? "Update");
+      const type = cleanText(play.type?.text ?? item.type ?? "Update");
       return {
         id: String(play.id ?? item.id ?? `${item.sequence ?? index}`),
-        minute: String(item.time?.displayValue ?? play.clock?.displayValue ?? ""),
+        minute: cleanText(item.time?.displayValue ?? play.clock?.displayValue ?? ""),
         type,
         team: play.team?.displayName,
-        text: String(item.text ?? play.text ?? play.shortText ?? ""),
+        text: cleanText(item.text ?? play.text ?? play.shortText ?? ""),
         important: isImportant(type, String(item.text ?? play.text ?? "")),
         wallclock: play.wallclock,
       };
@@ -147,4 +147,8 @@ function parseStats(json: any): TeamStat[] {
 
 function isImportant(type: string, text: string): boolean {
   return /goal|penalty|red card|yellow card|substitution|var/i.test(`${type} ${text}`);
+}
+
+function cleanText(value: unknown): string {
+  return String(value ?? "").replace(/[\r\n\t]+/g, " ").replace(/\s{2,}/g, " ").trim();
 }
