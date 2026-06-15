@@ -38,7 +38,7 @@ async function fetchJson(url: URL): Promise<any> {
   const response = await fetch(url, {
     headers: {
       accept: "application/json",
-      "user-agent": "world-cup-cli/0.1",
+      "user-agent": "world-cup-tui/0.1",
     },
   });
   if (!response.ok) {

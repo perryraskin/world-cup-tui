@@ -1,4 +1,4 @@
-# world-cup-cli
+# world-cup-tui
 
 Terminal live scoreboard and match timeline for the FIFA World Cup.
 
@@ -38,6 +38,12 @@ After build, you can also run the binary directly:
 
 ```sh
 node dist/index.js
+```
+
+If installed globally or linked locally, the binary is:
+
+```sh
+world-cup-tui
 ```
 
 ## Controls

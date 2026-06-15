@@ -25,10 +25,10 @@ function parseArgs(args: string[]) {
       options.date = next.replaceAll("-", "");
       index += 1;
     } else if (arg === "--help" || arg === "-h") {
-      console.log(`world-cup-cli
+      console.log(`world-cup-tui
 
 Usage:
-  world-cup [--refresh seconds] [--date YYYYMMDD] [--limit count]
+  world-cup-tui [--refresh seconds] [--date YYYYMMDD] [--limit count]
 
 Controls:
   j/k or arrows   move/scroll
