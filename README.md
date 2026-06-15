@@ -1,5 +1,7 @@
 # world-cup-tui
 
+<img width="1624" height="1000" alt="image-7" src="https://github.com/user-attachments/assets/587574f9-d07c-4ed1-a892-893f17123371" />
+
 Terminal live scoreboard and match timeline for the FIFA World Cup.
 
 The default data source is ESPN's public World Cup scoreboard and match summary endpoints. It works without an API key and can show live scores, match status, team stats, key events, and commentary when ESPN exposes those fields.
