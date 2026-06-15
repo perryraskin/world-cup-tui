@@ -1,6 +1,6 @@
 {
   "name": "world-cup-cli",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Terminal live scoreboard and match timeline for the FIFA World Cup.",
   "type": "module",
   "bin": {
@@ -22,8 +22,16 @@
     "tui",
     "live-score"
   ],
-  "author": "",
+  "author": "Perry Raskin",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perryraskin/world-cup-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/perryraskin/world-cup-cli/issues"
+  },
+  "homepage": "https://github.com/perryraskin/world-cup-cli#readme",
   "devDependencies": {
     "@types/node": "^25.9.3",
     "tsx": "^4.22.4",
